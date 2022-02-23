@@ -2,8 +2,10 @@ var authTokenWithEquals = (location.href.split('#')[1]).split('&')[1];
 const COGNITO_AUTH_TOKEN = authTokenWithEquals.split('=')[1];
 console.log(COGNITO_AUTH_TOKEN);
 var idTokenWithEquals = (location.href.split('#')[1]).split('&')[0];
-const COGNITO_ID_TOKEN = idTokenWithEquals.split('=')[1];
+var COGNITO_ID_TOKEN = idTokenWithEquals.split('=')[1];
+var COGNITO_ID_TOKEN = parseJwt(COGNITO_ID_TOKEN);
 console.log(COGNITO_ID_TOKEN);
+
 var dict = [];
 
 window.onload = () => {
@@ -43,8 +45,8 @@ function parseJwt (token) {
 
 function getCoins(AWSauthToken){
   //Grabs username and passowrd from document to be used as parameters for API
-  let authToken = "00c93687-35a9-403d-bfa9-562ddc864663";
-  let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio?authToken="+authToken;
+  let email = COGNITO_ID_TOKEN.email;
+  let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio?email="+email;
 
   axios.get(BITCOOOONECT_API, {
       headers: {
