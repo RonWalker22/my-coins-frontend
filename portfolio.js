@@ -37,9 +37,9 @@ function getCoins(AWSauthToken){
       }
   }).then((res) => {
     try {
-        console.log(res.data.user)
         objKeys = Object.keys(res.data.user.coins);
         objValues = Object.values(res.data.user.coins);
+        console.log(res)
         for(let i = 0; i < Object.keys(res.data.user.coins).length; i++) {
           console.log(objKeys[i]);
           console.log(objValues[i]);
@@ -81,6 +81,31 @@ function createAccount() {
       alert("API is disconnected");
     }
     
+  })
+  
+}
+
+function updateAccount() {
+  
+  let string1 = "https://ofeus50s1a.execute-api.us-east-2.amazonaws.com/prod/user_profile?email=evan@gmail.com&coinId=btc&amount=1";
+  //let string2 = "https://cl9rje8xdi.execute-api.us-east-2.amazonaws.com/prod/user_profile?user_email=john.smith@gmail.com&password=password";
+
+  const user = {
+    "email": 'evan@gmail.com',
+    "coinId": 'btc',
+    "amount": '1'
+  }
+  axios.post(`https://ofeus50s1a.execute-api.us-east-2.amazonaws.com/prod/user_profile`, user).then((res) => {
+    console.log(res);
+    if (res.data.statusCode === 200) {
+      alert("user created");
+      window.location.replace("./portfolio.html");
+      localStorage.setItem('myCat', 'Tom');
+      var cat = localStorage.getItem('myCat');
+
+    } else {
+      alert("Invalid information");
+    }
   })
   
 }
