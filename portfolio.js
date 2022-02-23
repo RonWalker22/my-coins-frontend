@@ -16,10 +16,6 @@ window.onload = () => {
 function loadTableData(){
     const tableBody = document.getElementById('tableData')
     let dataHtml = '';
-    
-
-    console.log("cognito id here2");
-    console.log(parseJwt(COGNITO_ID_TOKEN));
 
     getCoins(COGNITO_AUTH_TOKEN);
 
@@ -27,6 +23,7 @@ function loadTableData(){
         let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
         dataHtml += `<tr><td>${localStorage.key(i)}</td><td>${splitArray[0]}.</td><td>${splitArray[1]}</td><tr>`
     }
+    console.log("it all worked")
     tableBody.innerHTML = dataHtml;
     localStorage.clear();
 }
@@ -119,7 +116,7 @@ function updateAccount(coin, amount) {
       }
   }).then((res) => {
     try {
-        alert('User updated');
+        
     } catch (error) { 
         alert("API offline");
     }
@@ -131,8 +128,9 @@ function updates() {
 
     
     for(let i = 0; i < dict.length; i++) {
-        updateAccount(dict[i].key,dict[i].value)
+        updateAccount(dict[i].key,dict[i].value);
     }
+    alert('User updated');
 }
 
 function addUpdate() {
@@ -145,6 +143,7 @@ function addUpdate() {
         key:   "eth",
         value: "3"
     });
+    dict = [];
 }
 
 
