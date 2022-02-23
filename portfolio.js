@@ -5,11 +5,10 @@ window.onload = () => {
 function loadTableData(){
     const tableBody = document.getElementById('tableData')
     let dataHtml = '';
-    var url = new URL(String(window.URL));
-    var searchParam = url.searchParams.get("authToken");
-    console.log(searchParam);
+    var authTokenWithEquals = (location.href.split('#')[1]).split('&')[1];
+    var authToken = authTokenWithEquals.split('=')[1];
 
-    getCoins();
+    getCoins(authToken);
 
     for (i = 0; i < localStorage.length; i++) {
         let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
@@ -22,13 +21,17 @@ function loadTableData(){
 
 
 
-function getCoins(){
+function getCoins(authToken){
   //Grabs username and passowrd from document to be used as parameters for API
   let authToken = "00c93687-35a9-403d-bfa9-562ddc864663";
   
   let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio?authToken="+authToken;
 
-  axios.get(BITCOOOONECT_API).then((res) => {
+  axios.get(BITCOOOONECT_API, {
+      headers: {
+          'Authorization': authToken
+      }
+  }).then((res) => {
     try {
         objKeys = Object.keys(res.data.user.coins);
         objValues = Object.values(res.data.user.coins);
