@@ -5,7 +5,7 @@ window.onload = () => {
 function loadTableData(){
     const tableBody = document.getElementById('tableData')
     let dataHtml = '';
-    var url = new URL(url_string);
+    var url = new URL(String(window.URL));
     var searchParam = url.searchParams.get("authToken");
     console.log(searchParam);
 
