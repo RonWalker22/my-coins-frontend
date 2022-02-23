@@ -1,3 +1,11 @@
+var authTokenWithEquals = (location.href.split('#')[1]).split('&')[1];
+const COGNITO_AUTH_TOKEN = authTokenWithEquals.split('=')[1];
+console.log(COGNITO_AUTH_TOKEN);
+var idTokenWithEquals = (location.href.split('#')[1]).split('&')[0];
+const COGNITO_ID_TOKEN = idTokenWithEquals.split('=')[1];
+console.log(COGNITO_ID_TOKEN);
+var dict = [];
+
 window.onload = () => {
         loadTableData();
     };
@@ -5,11 +13,7 @@ window.onload = () => {
 function loadTableData(){
     const tableBody = document.getElementById('tableData')
     let dataHtml = '';
-    var authTokenWithEquals = (location.href.split('#')[1]).split('&')[1];
-    var COGNITO_AUTH_TOKEN = authTokenWithEquals.split('=')[1];
-
-    var idTokenWithEquals = (location.href.split('#')[1]).split('&')[0];
-    var COGNITO_ID_TOKEN = idTokenWithEquals.split('=')[1];
+    
 
 
     console.log(parseJwt(COGNITO_ID_TOKEN));
@@ -96,27 +100,41 @@ function createAccount() {
   
 }
 
-function updateAccount() {
+function updateAccount(coin, amount, ) {
   
-  let string1 = "https://ofeus50s1a.execute-api.us-east-2.amazonaws.com/prod/user_profile?email=evan@gmail.com&coinId=btc&amount=1";
-  //let string2 = "https://cl9rje8xdi.execute-api.us-east-2.amazonaws.com/prod/user_profile?user_email=john.smith@gmail.com&password=password";
+  let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio"
 
   const user = {
-    "email": 'evan@gmail.com',
+    "authToken": '00c93687-35a9-403d-bfa9-562ddc864663',
     "coinId": 'btc',
-    "amount": '1'
+    "amount": '2'
   }
-  axios.post(`https://ofeus50s1a.execute-api.us-east-2.amazonaws.com/prod/user_profile`, user).then((res) => {
-    console.log(res);
-    if (res.data.statusCode === 200) {
-      alert("user created");
-      window.location.replace("./portfolio.html");
-      localStorage.setItem('myCat', 'Tom');
-      var cat = localStorage.getItem('myCat');
-
-    } else {
-      alert("Invalid information");
+  axios.post(BITCOOOONECT_API, user, {
+      headers: {
+          'Authorization': COGNITO_AUTH_TOKEN
+      }
+  }).then((res) => {
+    try {
+        alert('User updated');
+    } catch (error) { 
+        alert("API offline");
     }
+    
   })
-  
 }
+
+function updates() {
+
+    dict.push({
+        key:   "keyName",
+        value: "the value"
+    });
+
+    dict.push({
+        key:   "keyName",
+        value: "the value2"
+    });
+    console.log(dict);
+}
+
+
