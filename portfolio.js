@@ -1,11 +1,8 @@
 var authTokenWithEquals = (location.href.split('#')[1]).split('&')[1];
 const COGNITO_AUTH_TOKEN = authTokenWithEquals.split('=')[1];
-console.log(COGNITO_AUTH_TOKEN);
 var idTokenWithEquals = (location.href.split('#')[1]).split('&')[0];
 var COGNITO_ID_TOKEN = idTokenWithEquals.split('=')[1];
 COGNITO_ID_TOKEN = parseJwt(COGNITO_ID_TOKEN);
-console.log("cognito id here");
-console.log(COGNITO_ID_TOKEN);
 
 var dict = [];
 
@@ -187,7 +184,6 @@ function addUpdate() {
         key:   "eth",
         value: "3"
     });
-    dict = [];
 }
 
 
