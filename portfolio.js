@@ -11,6 +11,7 @@ var dict = [];
 
 window.onload = () => {
         loadTableData();
+        getCoinPrices();
     };
 
 function loadTableData(){
@@ -75,7 +76,7 @@ function getCoins(AWSauthToken){
   })
 }
 
-function getCoinPrices(AWSauthToken){
+function getCoinPrices(){
   //Grabs username and passowrd from document to be used as parameters for API
   let email = COGNITO_ID_TOKEN.email;
   let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/coins?";
