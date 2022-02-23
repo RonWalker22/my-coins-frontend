@@ -89,7 +89,7 @@ function getCoinPrices(){
   axios.get(BITCOOOONECT_API, body, {
       
         headers: {
-          'Authorization': AWSauthToken
+          'Authorization': COGNITO_AUTH_TOKEN
       }
   }).then((res) => {
     try {
@@ -145,7 +145,7 @@ function createAccount() {
 function updateAccount(coin, amount) {
   
   let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio"
-
+  console.log("at updateAccount");
   const user = {
     "emailId": COGNITO_ID_TOKEN.email,
     "coinId": coin,
@@ -170,6 +170,7 @@ function updates() {
 
     
     for(let i = 0; i < dict.length; i++) {
+        console.log("before updateAccount");
         updateAccount(dict[i].key,dict[i].value);
     }
     alert('User updated');
