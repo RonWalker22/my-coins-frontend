@@ -83,10 +83,17 @@ function getCoinPrices(){
       ]
   }
 
-  axios.get(BITCOOOONECT_API, body, {
+  axios.get(BITCOOOONECT_API, {
       
         headers: {
           'Authorization': COGNITO_AUTH_TOKEN
+      },
+      data: {
+        "ids": [
+            "btc",
+            "eth",
+            "woo"
+          ]
       }
   }).then((res) => {
     try {
