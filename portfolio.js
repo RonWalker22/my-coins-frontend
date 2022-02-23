@@ -6,9 +6,13 @@ function loadTableData(){
     const tableBody = document.getElementById('tableData')
     let dataHtml = '';
     var authTokenWithEquals = (location.href.split('#')[1]).split('&')[1];
-    var authToken = authTokenWithEquals.split('=')[1];
+    var COGNITO_AUTH_TOKEN = authTokenWithEquals.split('=')[1];
 
-    getCoins(authToken);
+    var idTokenWithEquals = (location.href.split('#')[1]).split('&')[0];
+    var COGNITO_ID_TOKEN = idTokenWithEquals.split('=')[1];
+    
+
+    getCoins(COGNITO_AUTH_TOKEN);
 
     for (i = 0; i < localStorage.length; i++) {
         let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
@@ -33,6 +37,7 @@ function getCoins(AWSauthToken){
       }
   }).then((res) => {
     try {
+        console.log(res.data.user)
         objKeys = Object.keys(res.data.user.coins);
         objValues = Object.values(res.data.user.coins);
         for(let i = 0; i < Object.keys(res.data.user.coins).length; i++) {
