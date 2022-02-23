@@ -73,7 +73,7 @@ function getCoins(){
 function getCoinPrices(){
   //Grabs username and passowrd from document to be used as parameters for API
   let email = COGNITO_ID_TOKEN.email;
-  let BITCOOOONECT_API = `https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/coins??${["btc","ada","eth"].map((n, index) => `ids[${index}]=${n}`).join('&')}`;
+  let BITCOOOONECT_API = `https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/coins?${["btc","ada","eth"].map((n, index) => `ids[${index}]=${n}`).join('&')}`;
 
   const body = {
     "ids": [
