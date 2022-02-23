@@ -1,36 +1,14 @@
 <head>
     <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="playlist.js" defer></script>
-    <script src="index.js" defer></script>
+    <script src="portfolio.js" defer></script>
     <title>Portfolio</title>
 </head>
-
-<script>
-    window.onload = () => {
-        loadTableData();
-    };
-
-    function loadTableData(){
-        const tableBody = document.getElementById('tableData')
-        let dataHtml = '';
-        localStorage.setItem('BTC', '100.000');
-        localStorage.setItem('ETH', '1.000');
-
-        for (i = 0; i < localStorage.length; i++) {
-            let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
-            dataHtml += `<tr><td>${localStorage.key(i)}</td><td>${splitArray[0]}.</td><td>${splitArray[1]}</td><tr>`
-        }
-        tableBody.innerHTML = dataHtml;
-        localStorage.clear();
-    }
-</script>
 
 <body>
     <h2>Portfolio</h2>
     <div class="rightedit">
         <button onclick="editAccount()">Edit</button>
-        <button onclick="updateAccount()">Update</button>
     </div>
 
 
