@@ -18,7 +18,7 @@ function loadTableData(){
     const tableBody = document.getElementById('tableData')
     let dataHtml = '';
 
-    getCoins(COGNITO_AUTH_TOKEN);
+    getCoins();
 
     for (i = 0; i < localStorage.length; i++) {
         let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
@@ -42,14 +42,14 @@ function parseJwt (token) {
 
 
 
-function getCoins(AWSauthToken){
+function getCoins(){
   //Grabs username and passowrd from document to be used as parameters for API
   let email = COGNITO_ID_TOKEN.email;
-  let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio?email="+email;
+  let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio?emailId="+email;
 
   axios.get(BITCOOOONECT_API, {
       headers: {
-          'Authorization': AWSauthToken
+          'Authorization': COGNITO_AUTH_TOKEN
       }
   }).then((res) => {
     try {
@@ -67,7 +67,7 @@ function getCoins(AWSauthToken){
           console.log(localStorage.key(i) + "=[" + localStorage.getItem(localStorage.key(i)) + "]");
         }
     } catch (error) { 
-      alert("API offline");
+      alert("API offline: GET");
     }
     
   })
@@ -145,6 +145,7 @@ function createAccount() {
 function updateAccount(coin, amount) {
   
   let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio"
+
   console.log("at updateAccount");
   const user = {
     "emailId": COGNITO_ID_TOKEN.email,
@@ -160,7 +161,7 @@ function updateAccount(coin, amount) {
     try {
         
     } catch (error) { 
-        alert("API offline");
+        alert("API offline: UPDATE");
     }
     
   })
