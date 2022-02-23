@@ -10,7 +10,9 @@ function loadTableData(){
 
     var idTokenWithEquals = (location.href.split('#')[1]).split('&')[0];
     var COGNITO_ID_TOKEN = idTokenWithEquals.split('=')[1];
-    
+
+
+    console.log(parseJwt(COGNITO_ID_TOKEN));
 
     getCoins(COGNITO_AUTH_TOKEN);
 
@@ -22,13 +24,22 @@ function loadTableData(){
     localStorage.clear();
 }
 
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+};
+
 
 
 
 function getCoins(AWSauthToken){
   //Grabs username and passowrd from document to be used as parameters for API
   let authToken = "00c93687-35a9-403d-bfa9-562ddc864663";
-  console.log(AWSauthToken);
   let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio?authToken="+authToken;
 
   axios.get(BITCOOOONECT_API, {
