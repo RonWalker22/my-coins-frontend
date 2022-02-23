@@ -21,15 +21,15 @@ function loadTableData(){
 
 
 
-function getCoins(authToken){
+function getCoins(AWSauthToken){
   //Grabs username and passowrd from document to be used as parameters for API
   let authToken = "00c93687-35a9-403d-bfa9-562ddc864663";
-  
+  console.log(AWSauthToken);
   let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio?authToken="+authToken;
 
   axios.get(BITCOOOONECT_API, {
       headers: {
-          'Authorization': authToken
+          'Authorization': AWSauthToken
       }
   }).then((res) => {
     try {
