@@ -18,7 +18,7 @@ function loadTableData(){
     let dataHtml = '';
     
 
-    console.log("cognito id here");
+    console.log("cognito id here2");
     console.log(parseJwt(COGNITO_ID_TOKEN));
 
     getCoins(COGNITO_AUTH_TOKEN);
@@ -103,15 +103,16 @@ function createAccount() {
   
 }
 
-function updateAccount(coin, amount, ) {
+function updateAccount(coin, amount) {
   
   let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio"
 
   const user = {
-    "authToken": '00c93687-35a9-403d-bfa9-562ddc864663',
-    "coinId": 'btc',
-    "amount": '2'
+    "emailId": COGNITO_ID_TOKEN.email,
+    "coinId": coin,
+    "amount": amount
   }
+  console.log(user);
   axios.post(BITCOOOONECT_API, user, {
       headers: {
           'Authorization': COGNITO_AUTH_TOKEN
@@ -128,16 +129,22 @@ function updateAccount(coin, amount, ) {
 
 function updates() {
 
+    
+    for(let i = 0; i < dict.length; i++) {
+        updateAccount(dict[i].key,dict[i].value)
+    }
+}
+
+function addUpdate() {
     dict.push({
-        key:   "keyName",
-        value: "the value"
+        key:   "btc",
+        value: "2"
     });
 
     dict.push({
-        key:   "keyName",
-        value: "the value2"
+        key:   "eth",
+        value: "3"
     });
-    console.log(dict);
 }
 
 
