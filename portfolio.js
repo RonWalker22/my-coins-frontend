@@ -168,7 +168,7 @@ function updateAccount(coin, amount) {
       headers: {
           'Authorization': COGNITO_AUTH_TOKEN,
           'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Headers': '*'
+          'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
       }
   }).then((res) => {
     try {
