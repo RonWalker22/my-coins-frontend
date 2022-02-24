@@ -98,7 +98,7 @@ function getCoins(){
           let amountOfCoin = (objValues[i]).toFixed(8);
           let priceOfCoin = (objCoinValues[i].price).toFixed(2);
           let valueOfCoin = (objCoinValues[i].value).toFixed(8);
-          console.log(ObjCoinValues);
+          console.log(objCoinValues);
           let item = {coin: String(objKeys[i]), amount: String(amountOfCoin), price: String(priceOfCoin), value: String(valueOfCoin)};
           console.log(item);
           userStorage.push(item);
