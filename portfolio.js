@@ -18,7 +18,7 @@ var userStorage = [];
 
 
 window.onload = () => {
-      loadTableData();
+    getCoins();
       //getCoinPrices();
     };
 
@@ -27,14 +27,12 @@ function loadTableData(){
     let dataHtml = '';
 
     //getMockCoins();
-    getCoins();
-    setTimeout(getMockCoins(), 15000);
-    console.log("done with getCoins");
+    
+    //setTimeout(getMockCoins(), 15000);
     console.log(userStorage);
     for (i = 0; i < userStorage.length; i++) {
         //for double row perfect alignment of '.'
         //let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
-        console.log(userStorage[i].coin);
         dataHtml += `<tr id="row${i}"><td><button id="hiddenButton${userStorage[i].coin}" style="display:none" onclick="remove(${i})">-</button></td>
           <td id="${userStorage[i].coin}">${userStorage[i].coin}</td><td id="${userStorage[i].coin}Amount">${userStorage[i].amount}</td>
           
@@ -103,6 +101,7 @@ function getCoins(){
           
         }
         console.log(userStorage);
+        loadTableData();
 
     } catch (error) { 
       alert("API offline: GET");
@@ -168,8 +167,8 @@ function updateAccount(coin, amount) {
 
 function editFunction() {
     //displays removeButtons
-    for(let i = 0; i < localStorage.length;i++){
-      var string = "hiddenButton" + localStorage.key(i);
+    for(let i = 0; i < userStorage.length;i++){
+      var string = "hiddenButton" + userStorage[i].coin;
       var hidden = document.getElementById(string);
       hidden.style.display = "block";  
       hidden.style.position = "absolute";
@@ -215,8 +214,8 @@ function saveFunction() {
   dict = [];
 
   //start to hide elements
-  for(let i = 0; i < localStorage.length;i++){
-    var string = "hiddenButton" + localStorage.key(i);
+  for(let i = 0; i < userStorage.length;i++){
+    var string = "hiddenButton" + userStorage[i].coin;
     var hidden = document.getElementById(string);
     hidden.style.display = "none";  // <-- Set it to block
   }
@@ -228,8 +227,7 @@ function saveFunction() {
   //parse through html and fix your naming conventions
   //nuke and restart
   document.getElementById('tableData').innerHTML ="";
-  setTimeout(loadTableData(), 10000);
-  console.log("here");
+  getCoins();
   //window.location.reload();
 
 }
