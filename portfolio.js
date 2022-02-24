@@ -182,6 +182,7 @@ function saveFunction() {
     dict.push(objectToAdd);
   }
   //if not empty dict go through list then empty it
+  console.log(dict);
   if(dict.length > 0){
     for (let i = 0; i < dict.length; i++) {
       console.log("before updateAccount");
@@ -218,6 +219,7 @@ function remove(index) {
   rowBody.remove();
   localStorage.removeItem(localStorage.key(index));
   objectToRemove = {type: 'delete', coin: localStorage.key(index), amount: 0};
+  console.log(objectToRemove);
   dict.push(objectToRemove);
 }
 
