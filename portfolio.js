@@ -18,7 +18,6 @@ var userStorage = [];
 
 
 window.onload = () => {
-        loadTableData();
         saveFunction();
         //getCoinPrices();
     };
