@@ -217,10 +217,11 @@ function saveFunction() {
   if(dict.length > 0){
     for (let i = 0; i < dict.length; i++) {
       console.log("before updateAccount");
-      updateAccount(dict[i].key,dict[i].value);
+      updateAccount(dict[i].coin,dict[i].amount);
     }
     alert('User updated');
   }
+  dict = {}
 
   //start to hide elements
   for(let i = 0; i < localStorage.length;i++){
