@@ -74,7 +74,7 @@ function getCoins(){
 function getCoinPrices(){
   //Grabs username and passowrd from document to be used as parameters for API
   let email = COGNITO_ID_TOKEN.email;
-  let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/coins?";
+  let BITCOOOONECT_API = `https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/coins?${["btc","ada","eth"].map((n, index) => `ids[${index}]=${n}`).join('&')}`;
 
   const body = {
     "ids": [
@@ -84,7 +84,7 @@ function getCoinPrices(){
       ]
   }
 
-  axios.get(BITCOOOONECT_API, body, {
+  axios.get(BITCOOOONECT_API, {
       
         headers: {
           'Authorization': COGNITO_AUTH_TOKEN
@@ -120,6 +120,8 @@ function createAccount() {
 
   const userObj = {
   };
+
+
 
   axios.post(BITCOOOONECT_API, userObj).then((res) => {
     console.log(res.data);
