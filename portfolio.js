@@ -162,7 +162,7 @@ function updateAccount(coin, amount) {
     "amount": parseInt(amount)
   }
   console.log(user);
-  axios.post(BITCOOOONECT_API, user, {
+  axios.put(BITCOOOONECT_API, user, {
       headers: {
           'Authorization': COGNITO_AUTH_TOKEN
       }
@@ -237,8 +237,8 @@ function saveFunction() {
   //parse through html and fix your naming conventions
   //nuke and restart
   document.getElementById('tableData').innerHTML ="";
-  loadTableData();
-  //window.location.reload();
+  //loadTableData();
+  window.location.reload();
 
 }
 
