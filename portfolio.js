@@ -50,7 +50,7 @@ function loadTableData(){
         <option value="Avalanche">Avalanche</option>
     </select></td>
     
-    <td id="editAmount" ><input placeholder="Amount" id="editAmountTextField" style="display:none"/></td></tr>`
+    <td id="editAmount" colspan="2"><input placeholder="Amount" id="editAmountTextField" style="display:none"/></td></tr>`
     tableBody.innerHTML = dataHtml;
     //localStorage.clear();
 }
