@@ -68,6 +68,7 @@ function getCoins(){
       }
   }).then((res) => {
     try {
+        localStorage.clear();
         objKeys = Object.keys(res.data.user.coins);
         objValues = Object.values(res.data.user.coins);
         for(let i = 0; i < Object.keys(res.data.user.coins).length; i++) {
