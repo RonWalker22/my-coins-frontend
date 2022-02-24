@@ -210,9 +210,7 @@ function saveFunction() {
   //parse through html and fix your naming conventions
   //nuke and restart
   document.getElementById('tableData').innerHTML ="";
-  setTimeout(function(){
-    loadTableData();
-  }, 10000);
+  setTimeout(loadTableData(), 10000);
   //window.location.reload();
 
 }
