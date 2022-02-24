@@ -28,7 +28,9 @@ function loadTableData(){
 
     //getMockCoins();
     getCoins();
-    setTimeout(getMockCoins(), 3000);
+    while(userStorage.length == 0){
+      setTimeout(getMockCoins(), 1000)
+    };
     console.log("done with getCoins");
     console.log(userStorage);
     for (i = 0; i < userStorage.length; i++) {
