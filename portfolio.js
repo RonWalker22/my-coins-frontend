@@ -127,7 +127,10 @@ function updateAccount(coin, amount) {
   axios.put(BITCOOOONECT_API2, {
       headers: {
           'Authorization': COGNITO_AUTH_TOKEN,
-          'Access-Control-Allow-Origin': 'https://main.d2vxkgg60q4gyv.amplifyapp.com'
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'OPTIONS,PUT',
+          'Content-Type': 'application/json'
       }
   }).then((res) => {
     try {
@@ -175,7 +178,7 @@ function saveFunction() {
     console.log(newCoinValue);
     console.log(newAmountValue);
     objectToAdd = {type: 'add', coin: newCoinValue, amount: newAmountValue};
-    dict.push(objectToAdd)
+    dict.push(objectToAdd);
   }
   //if not empty dict go through list then empty it
   if(dict.length > 0){
