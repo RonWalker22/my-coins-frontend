@@ -3,8 +3,13 @@ const COGNITO_AUTH_TOKEN = authTokenWithEquals.split('=')[1];
 var idTokenWithEquals = (location.href.split('#')[1]).split('&')[0];
 var COGNITO_ID_TOKEN = idTokenWithEquals.split('=')[1];
 COGNITO_ID_TOKEN = parseJwt(COGNITO_ID_TOKEN);
-
 var dict = [];
+
+// var list = [
+//   { type: 'delete', coin: 'btc', amount: 0 },
+//   { type: 'add', coin: 'eth', amount: 20053.0 },
+//   { type: 'add', coin: 'ltc', amount: 45652 }
+// ];
 
 window.onload = () => {
         loadTableData();
@@ -19,8 +24,20 @@ function loadTableData(){
     getCoins();
     for (i = 0; i < localStorage.length; i++) {
         let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
-        dataHtml += `<tr><td><button id="hiddenButtons${i}" style="display:none" onclick="remove()">-</button></td><td>${localStorage.key(i)}</td><td>${splitArray[0]}.</td><td>${splitArray[1]}</td></tr>`
+        dataHtml += `<tr id="row${i}"><td><button id="hiddenButton${localStorage.key(i)}" style="display:none" onclick="remove(${i})">-</button></td>
+          <td id="${localStorage.key(i)}">${localStorage.key(i)}</td><td id="${localStorage.key(i)}Amount">${splitArray[0]}.</td>
+          <td id="${localStorage.key(i)}Amount2">${splitArray[1]}</td></tr>`
     }
+    dataHtml += `<tr><td></td>
+    <td id="coinOptions">
+    <select id="listOfCoins" style="display:none">
+        <option value="empty" selected="selected"></option>
+        <option value="btc">btc</option>
+        <option value="eth">eth</option>
+        <option value="ltc">ltc</option>
+    </select></td>
+    
+    <td id="editAmount" colspan="2"><input placeholder="Amount" id="editAmountTextField" style="display:none"/></td></tr>`
     tableBody.innerHTML = dataHtml;
     localStorage.clear();
 }
@@ -121,8 +138,6 @@ function createAccount() {
   const userObj = {
   };
 
-
-
   axios.post(BITCOOOONECT_API, userObj).then((res) => {
     console.log(res.data);
     try {
@@ -190,22 +205,66 @@ function addUpdate() {
 }
 
 function editFunction() {
-    var length = 2;
-    for(let i = 0; i < length;i++){
-      var string = "hiddenButtons" + String(i);
+    //displays removeButtons
+    for(let i = 0; i < localStorage.length;i++){
+      var string = "hiddenButton" + localStorage.key(i);
       var hidden = document.getElementById(string);
-      hidden.style.display = "block";  // <-- Set it to block
+      hidden.style.display = "block";  
       hidden.style.position = "absolute";
     }
+    //makes coin dropdown and amount appaer 
+    var hiddenAmountTextField = document.getElementById('editAmountTextField');
+    hiddenAmountTextField.style.display = "block";  
+    hiddenAmountTextField.style.position = "absolute";
+
+    var hiddenListOfCoins = document.getElementById('listOfCoins');
+    hiddenListOfCoins.style.display = "block";  
+    hiddenListOfCoins.style.position = "absolute";
+
 }
 
 function saveFunction() {
-  var length = 2;
-    for(let i = 0; i < length;i++){
-      var string = "hiddenButtons" + String(i);
+  //grab a new object if its been created
+  //if not empty dict go through list then empty it
+  //updateUserActivity
+  //getUserActivity
+
+  //might have to append a newEditRow 
+
+  //start to hide elements
+    for(let i = 0; i < localStorage.length;i++){
+      var string = "hiddenButton" + localStorage.key(i);
       var hidden = document.getElementById(string);
       hidden.style.display = "none";  // <-- Set it to block
     }
+    var hiddenAmountTextField = document.getElementById('editAmountTextField');
+    hiddenAmountTextField.style.display = "none";  
+    var hiddenListOfCoins = document.getElementById('listOfCoins');
+    hiddenListOfCoins.style.display = "none";  
+    var newCoinValue = document.getElementById('listOfCoins').value;
+    var newAmountValue = document.getElementById('editAmountTextField').value;
+  
+  //parse through html and fix your naming conventions
+  //nuke and restart
+  document.getElementById('tableData').innerHTML ="";
+  loadTableData();
+
+}
+
+function remove(index) {
+  var rowString = "row"+String(index);
+  const rowBody = document.getElementById(rowString);
+  console.log(rowBody);
+  rowBody.remove();
+  //remove in local storage
+  objectToRemove = {type: 'delete', coin: localStorage.key(index), amount: 0};
+  dict.push(objectToRemove);
+
+
+}
+
+function clearStorage() {
+  localStorage.clear();
 }
 
 

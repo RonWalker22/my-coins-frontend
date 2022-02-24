@@ -14,8 +14,7 @@ th {
 }
 
 #accountHeader {
-  text-align: right;
-  color: red;
+  text-align: center;
 }
 
 tr {
@@ -67,16 +66,23 @@ h2 {
   padding-left: 55px;
 }
 
-#container {
+.container {
   border-right: 1px solid red;
   display: inline-block;
   text-align: right;
+  width: 300px;  
+  border: 10px black;
 }
 #invisibleHeader {
   background-color: white;
 }
 
 .EditButtons {
+  padding: 10px;
+  padding-left: 55px;
+}
+
+.AddButton {
   padding: 10px;
   padding-left: 55px;
 }
