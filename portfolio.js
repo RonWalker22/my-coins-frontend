@@ -26,6 +26,7 @@ function loadTableData(){
     const tableBody = document.getElementById('tableData')
     document.getElementById('tableData').innerHTML ="";
     let dataHtml = '';
+    console.log("2");
     
     for (i = 0; i < userStorage.length; i++) {
         //for double row perfect alignment of '.'
@@ -34,6 +35,7 @@ function loadTableData(){
           <td id="${userStorage[i].coin}">${userStorage[i].coin}</td><td id="${userStorage[i].coin}Amount">${userStorage[i].amount}</td>
           <td id="${userStorage[i].coin}Price">${userStorage[i].price}</td><td id="${userStorage[i].coin}Value">${userStorage[i].value}</td>
           </tr>`
+          console.log("3");
     }
     dataHtml += `<tr><td></td>
     <td id="coinOptions">
@@ -98,6 +100,7 @@ function getCoins(){
         }
         console.log(userStorage);
         loadTableData();
+        console.log("1");
 
     } catch (error) { 
       alert("API offline: GET");
