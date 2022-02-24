@@ -70,16 +70,10 @@ function getCoins(){
     try {
         objKeys = Object.keys(res.data.user.coins);
         objValues = Object.values(res.data.user.coins);
-        console.log(res)
         for(let i = 0; i < Object.keys(res.data.user.coins).length; i++) {
-          console.log(objKeys[i]);
-          console.log(objValues[i]);
           //converts number to be number with 8 decimal places
           let value = (objValues[i]).toFixed(8); 
           localStorage.setItem(String(objKeys[i]),String(value));
-        }
-        for (i = 0; i < localStorage.length; i++)   {
-          console.log(localStorage.key(i) + "=[" + localStorage.getItem(localStorage.key(i)) + "]");
         }
     } catch (error) { 
       alert("API offline: GET");
@@ -245,7 +239,8 @@ function saveFunction() {
   //parse through html and fix your naming conventions
   //nuke and restart
   document.getElementById('tableData').innerHTML ="";
-  loadTableData();
+  //loadTableData();
+  window.location.reload();
 
 }
 
