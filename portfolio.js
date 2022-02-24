@@ -13,7 +13,7 @@ var dict = [];
 
 window.onload = () => {
         loadTableData();
-        getCoinPrices();
+        //getCoinPrices();
     };
 
 function loadTableData(){
@@ -39,7 +39,7 @@ function loadTableData(){
     
     <td id="editAmount" colspan="2"><input placeholder="Amount" id="editAmountTextField" style="display:none"/></td></tr>`
     tableBody.innerHTML = dataHtml;
-    localStorage.clear();
+    //localStorage.clear();
 }
 
 function parseJwt (token) {
