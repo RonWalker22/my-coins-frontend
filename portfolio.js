@@ -32,9 +32,15 @@ function loadTableData(){
     <td id="coinOptions">
     <select id="listOfCoins" style="display:none">
         <option value="empty" selected="selected"></option>
-        <option value="btc">btc</option>
-        <option value="eth">eth</option>
-        <option value="ltc">ltc</option>
+        <option value="Bitcoin">Bitcoin</option>
+        <option value="Ethereum">Ethereum</option>
+        <option value="Tether">Tether</option>
+        <option value="USDC">USDC</option>
+        <option value="XRP">XRP</option>
+        <option value="Cardano">Cardano</option>
+        <option value="Solana">Solana</option>
+        <option value="Terra">Terra</option>
+        <option value="Avalanche">Avalanche</option>
     </select></td>
     
     <td id="editAmount" colspan="2"><input placeholder="Amount" id="editAmountTextField" style="display:none"/></td></tr>`
@@ -162,12 +168,12 @@ function saveFunction() {
   var newCoinValue = document.getElementById('listOfCoins').value;
   var newAmountValue = document.getElementById('editAmountTextField').value;
   var isNewCoin = true;
-  for(let i = 0; i < localStorage.length;i++){
-    if(localStorage.key(i) == newCoinValue){
-      isNewCoin = false;
-      console.log(false);
-    }
-  }
+  // for(let i = 0; i < localStorage.length;i++){
+  //   if(localStorage.key(i) == newCoinValue){
+  //     isNewCoin = false;
+  //     console.log(false);
+  //   }
+  // }
   if(newCoinValue != "" && isNewCoin && newAmountValue != ""){
     
     console.log(newCoinValue);
