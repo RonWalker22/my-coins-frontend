@@ -76,13 +76,18 @@ function getCoins(){
   }).then((res) => {
     try {
       //DELETE LATER
-        console.log(res.data);
+        console.log("resData: " + res.data);
         localStorage.clear();
         objKeys = Object.keys(res.data.user.coins);
         objValues = Object.values(res.data.user.coins);
+        objCoinKeys = Object.keys(res.data.coins);
         for(let i = 0; i < Object.keys(res.data.user.coins).length; i++) {
           //converts number to be number with 8 decimal places
-          let value = (objValues[i]).toFixed(8); 
+          let value = (objValues[i]).toFixed(8);
+          console.log(objCoinKeys);
+          let item = {'coin': String(objKeys[i]), 'amount': String(value), 'price': objCoinKeys[i].price, 'value': objCoinKeys[i].value};
+          console.log(item);
+          userStorage.push(item);
           localStorage.setItem(String(objKeys[i]),String(value));
 
         }
@@ -192,7 +197,7 @@ function saveFunction() {
       console.log("before updateAccount");
       updateAccount(dict[i].coin,dict[i].amount);
     }
-    alert('User updated');
+    //alert('User updated');
   }
   dict = [];
 
@@ -211,6 +216,7 @@ function saveFunction() {
   //nuke and restart
   document.getElementById('tableData').innerHTML ="";
   setTimeout(loadTableData(), 10000);
+  console.log("here");
   //window.location.reload();
 
 }
