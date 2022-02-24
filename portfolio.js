@@ -86,7 +86,7 @@ function getCoins(){
       //DELETE LATER
         console.log("resData: ");
         console.log(res.data);
-        localStorage.clear();
+        userStorage = [];
         objKeys = Object.keys(res.data.user.coins);
         objValues = Object.values(res.data.user.coins);
         //objCoinKeys = Object.keys(res.data.coins);
@@ -102,8 +102,7 @@ function getCoins(){
           let item = {coin: String(objKeys[i]), amount: String(amountOfCoin), price: String(priceOfCoin), value: String(valueOfCoin)};
           console.log(item);
           userStorage.push(item);
-          localStorage.setItem(String(objKeys[i]),String(value));
-
+          console.log(userStorage);
         }
     } catch (error) { 
       alert("API offline: GET");
