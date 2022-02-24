@@ -30,7 +30,7 @@ function loadTableData(){
     }
     dataHtml += `<tr><td></td>
     <td id="coinOptions">
-    <select id="lis tOfCoins" style="display:none">
+    <select id="listOfCoins" style="display:none">
         <option value="empty" selected="selected"></option>
         <option value="Bitcoin">Bitcoin</option>
         <option value="Ethereum">Ethereum</option>
@@ -228,14 +228,6 @@ function clearStorage() {
   localStorage.clear();
 }
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
 
-async function demo() {
-  console.log('Taking a break...');
-  await sleep(10000);
-  console.log('Two second later');
-}
 
 

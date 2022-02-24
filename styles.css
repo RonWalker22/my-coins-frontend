@@ -18,7 +18,8 @@ th {
 }
 
 tr {
-  padding: 50%;
+  padding: 5%;
+  border: white;
 }
 td:nth-child(3) {
   text-align: right;
