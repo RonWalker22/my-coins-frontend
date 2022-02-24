@@ -216,7 +216,6 @@ function saveFunction() {
   //if not empty dict go through list then empty it
   if(dict.length > 0){
     for (let i = 0; i < dict.length; i++) {
-      const element = array[i];
       console.log("before updateAccount");
       updateAccount(dict[i].key,dict[i].value);
     }
