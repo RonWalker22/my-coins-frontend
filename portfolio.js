@@ -150,7 +150,7 @@ function createAccount() {
   })
   
 }
-//working on it-Juan
+
 function updateAccount(coin, amount) {
   
   let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio"
@@ -175,26 +175,6 @@ function updateAccount(coin, amount) {
     
   })
 }
-//working on it-J
-function updates() {
-    for(let i = 0; i < dict.length; i++) {
-        console.log("before updateAccount");
-        updateAccount(dict[i].key,dict[i].value);
-    }
-    alert('User updated');
-}
-
-function addUpdate() {
-    dict.push({
-        key:   "btc",
-        value: "2"
-    });
-
-    dict.push({
-        key:   "eth",
-        value: "3"
-    });
-}
 
 function editFunction() {
     //displays removeButtons
@@ -217,24 +197,42 @@ function editFunction() {
 
 function saveFunction() {
   //grab a new object if its been created
+  var newCoinValue = document.getElementById('listOfCoins').value;
+  var newAmountValue = document.getElementById('editAmountTextField').value;
+  var isNewCoin = true;
+  for(let i = 0; i < localStorage.length;i++){
+    if(localStorage.key(i) == newCoinValue){
+      isNewCoin = false;
+      console.log(false);
+    }
+  }
+  if(newCoinValue != "" && isNewCoin && newAmountValue != ""){
+    
+    console.log(newCoinValue);
+    console.log(newAmountValue);
+    objectToAdd = {type: 'add', coin: newCoinValue, amount: newAmountValue};
+    dict.push(objectToAdd)
+  }
   //if not empty dict go through list then empty it
-  //updateUserActivity
-  //getUserActivity
-
-  //might have to append a newEditRow 
+  if(dict.length > 0){
+    for (let i = 0; i < dict.length; i++) {
+      const element = array[i];
+      console.log("before updateAccount");
+      updateAccount(dict[i].key,dict[i].value);
+    }
+    alert('User updated');
+  }
 
   //start to hide elements
-    for(let i = 0; i < localStorage.length;i++){
-      var string = "hiddenButton" + localStorage.key(i);
-      var hidden = document.getElementById(string);
-      hidden.style.display = "none";  // <-- Set it to block
-    }
-    var hiddenAmountTextField = document.getElementById('editAmountTextField');
-    hiddenAmountTextField.style.display = "none";  
-    var hiddenListOfCoins = document.getElementById('listOfCoins');
-    hiddenListOfCoins.style.display = "none";  
-    var newCoinValue = document.getElementById('listOfCoins').value;
-    var newAmountValue = document.getElementById('editAmountTextField').value;
+  for(let i = 0; i < localStorage.length;i++){
+    var string = "hiddenButton" + localStorage.key(i);
+    var hidden = document.getElementById(string);
+    hidden.style.display = "none";  // <-- Set it to block
+  }
+  var hiddenAmountTextField = document.getElementById('editAmountTextField');
+  hiddenAmountTextField.style.display = "none";  
+  var hiddenListOfCoins = document.getElementById('listOfCoins');
+  hiddenListOfCoins.style.display = "none";  
   
   //parse through html and fix your naming conventions
   //nuke and restart
