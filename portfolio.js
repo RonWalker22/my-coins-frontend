@@ -237,8 +237,8 @@ function saveFunction() {
   //parse through html and fix your naming conventions
   //nuke and restart
   document.getElementById('tableData').innerHTML ="";
-  //loadTableData();
-  window.location.reload();
+  loadTableData();
+  //window.location.reload();
 
 }
 
