@@ -4,6 +4,7 @@ var idTokenWithEquals = (location.href.split('#')[1]).split('&')[0];
 var COGNITO_ID_TOKEN = idTokenWithEquals.split('=')[1];
 COGNITO_ID_TOKEN = parseJwt(COGNITO_ID_TOKEN);
 var dict = [];
+var userStorage = [];
 
 // var list = [
 //   { type: 'delete', coin: 'btc', amount: 0 },
@@ -74,6 +75,8 @@ function getCoins(){
       }
   }).then((res) => {
     try {
+      //DELETE LATER
+        console.log(res.data);
         localStorage.clear();
         objKeys = Object.keys(res.data.user.coins);
         objValues = Object.values(res.data.user.coins);
@@ -81,6 +84,7 @@ function getCoins(){
           //converts number to be number with 8 decimal places
           let value = (objValues[i]).toFixed(8); 
           localStorage.setItem(String(objKeys[i]),String(value));
+
         }
     } catch (error) { 
       alert("API offline: GET");
@@ -208,7 +212,7 @@ function saveFunction() {
   document.getElementById('tableData').innerHTML ="";
   setTimeout(function(){
     loadTableData();
-  }, 5000);
+  }, 10000);
   //window.location.reload();
 
 }
