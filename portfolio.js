@@ -34,7 +34,7 @@ function loadTableData(){
         dataHtml += `<tr id="row${i}"><td><button id="hiddenButton${userStorage[i].coin}" style="display:none" onclick="remove(${i})">-</button></td>
           <td id="${userStorage[i].coin}">${userStorage[i].coin}</td><td id="${userStorage[i].coin}Amount">${userStorage[i].amount}</td>
           
-          
+
           </tr>`
     }
     dataHtml += `<tr><td></td>
@@ -84,19 +84,22 @@ function getCoins(){
   }).then((res) => {
     try {
       //DELETE LATER
-        console.log("resData: " + res.data);
+        console.log("resData: ");
+        console.log(res.data);
         localStorage.clear();
         objKeys = Object.keys(res.data.user.coins);
         objValues = Object.values(res.data.user.coins);
         //objCoinKeys = Object.keys(res.data.coins);
+        console.log("resData1: ");
         objCoinValues = Object.values(res.data.coins);
+        console.log("resData2: ");
         for(let i = 0; i < Object.keys(res.data.user.coins).length; i++) {
           //converts number to be number with 8 decimal places
           let amountOfCoin = (objValues[i]).toFixed(8);
           let priceOfCoin = (objCoinValues[i].price).toFixed(2);
           let valueOfCoin = (objCoinValues[i].value).toFixed(8);
           console.log(ObjCoinValues);
-          let item = {coin: String(objKeys[i]), amount: String(value), price: String(priceOfCoin), value: String(valueOfCoin)};
+          let item = {coin: String(objKeys[i]), amount: String(amountOfCoin), price: String(priceOfCoin), value: String(valueOfCoin)};
           console.log(item);
           userStorage.push(item);
           localStorage.setItem(String(objKeys[i]),String(value));
@@ -237,6 +240,7 @@ function remove(index) {
   const rowBody = document.getElementById(rowString);
   console.log(rowBody);
   rowBody.remove();
+  userStorage.splice(index,1);
   localStorage.removeItem(localStorage.key(index));
   objectToRemove = {type: 'delete', coin: localStorage.key(index), amount: 0};
   console.log(objectToRemove);
