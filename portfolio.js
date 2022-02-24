@@ -32,7 +32,7 @@ function loadTableData(){
         //let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
         dataHtml += `<tr id="row${i}"><td><button id="hiddenButton${userStorage[i].coin}" style="display:none" onclick="remove(${i})">-</button></td>
           <td id="${userStorage[i].coin}">${userStorage[i].coin}</td><td id="${userStorage[i].coin}Amount">${userStorage[i].amount}</td>
-          <td id="${userStorage[i].coin}Price">${userStorage[i].value}</td><td id="${userStorage[i].coin}Value">${userStorage[i].value}</td>
+          <td id="${userStorage[i].coin}Price">${userStorage[i].price}</td><td id="${userStorage[i].coin}Value">${userStorage[i].value}</td>
           </tr>`
     }
     dataHtml += `<tr><td></td>
@@ -50,7 +50,7 @@ function loadTableData(){
         <option value="Avalanche">Avalanche</option>
     </select></td>
     
-    <td id="editAmount" colspan="2"><input placeholder="Amount" id="editAmountTextField" style="display:none"/></td></tr>`
+    <td id="editAmount" ><input placeholder="Amount" id="editAmountTextField" style="display:none"/></td></tr>`
     tableBody.innerHTML = dataHtml;
     //localStorage.clear();
 }
@@ -142,11 +142,11 @@ function editFunction() {
     //makes coin dropdown and amount appaer 
     var hiddenAmountTextField = document.getElementById('editAmountTextField');
     hiddenAmountTextField.style.display = "block";  
-    hiddenAmountTextField.style.position = "absolute";
+    //hiddenAmountTextField.style.position = "absolute";
 
     var hiddenListOfCoins = document.getElementById('listOfCoins');
     hiddenListOfCoins.style.display = "block";  
-    hiddenListOfCoins.style.position = "absolute";
+    //hiddenListOfCoins.style.position = "absolute";
 
 }
 
