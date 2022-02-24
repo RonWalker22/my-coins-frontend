@@ -23,7 +23,7 @@ window.onload = () => {
     };
 
 function loadTableData(){
-    const tableBody = document.getElementById('tableData')
+    const tableBody = document.getElementById('tableData');
     document.getElementById('tableData').innerHTML ="";
     let dataHtml = '';
     console.log("2");
