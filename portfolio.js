@@ -18,8 +18,8 @@ var userStorage = [];
 
 
 window.onload = () => {
-        saveFunction();
-        //getCoinPrices();
+      loadTableData;
+      //getCoinPrices();
     };
 
 function loadTableData(){
@@ -28,6 +28,7 @@ function loadTableData(){
 
     //getMockCoins();
     getCoins();
+    setTimeout(wait(), 3000);
     console.log("done with getCoins");
     for (i = 0; i < userStorage.length; i++) {
         //for double row perfect alignment of '.'
@@ -85,7 +86,6 @@ function getCoins(){
       }
   }).then((res) => {
     try {
-      //DELETE LATER
         userStorage = [];
         objKeys = Object.keys(res.data.user.coins);
         objValues = Object.values(res.data.user.coins);
@@ -101,6 +101,7 @@ function getCoins(){
           userStorage.push(item);
           console.log(userStorage);
         }
+
     } catch (error) { 
       alert("API offline: GET");
     }
@@ -245,6 +246,10 @@ function remove(index) {
 
 function clearStorage() {
   localStorage.clear();
+}
+
+function wait(){
+
 }
 
 
