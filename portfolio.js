@@ -115,7 +115,9 @@ function createAccount() {
 function updateAccount(coin, amount) {
   
   let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio?emailId="+String(COGNITO_ID_TOKEN.email)+"&coinId="+coin+"&amount="+amount;
-  let BITCOOOONECT_API2 = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/post?emailId=guancruz81@gmail.com&coinId=ltc&amount=8"
+//   let BITCOOOONECT_API2 = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/post?emailId=guancruz81@gmail.com&coinId=Bitcoin&amount=8"  
+  
+  let BITCOOOONECT_API2 = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/post?emailId=rondwalker22@yahoo.com&coinId=Bitcoin&amount=8"
   console.log(BITCOOOONECT_API);
   console.log(BITCOOOONECT_API2);
   console.log("at updateAccount");
@@ -125,7 +127,7 @@ function updateAccount(coin, amount) {
     "amount": parseInt(amount)
   }
   console.log(user);
-  axios.get(BITCOOOONECT_API2, {
+  axios.put(BITCOOOONECT_API2, {
       headers: {
           'Authorization': COGNITO_AUTH_TOKEN,
       }
