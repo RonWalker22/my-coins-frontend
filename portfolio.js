@@ -4,13 +4,18 @@ var idTokenWithEquals = (location.href.split('#')[1]).split('&')[0];
 var COGNITO_ID_TOKEN = idTokenWithEquals.split('=')[1];
 COGNITO_ID_TOKEN = parseJwt(COGNITO_ID_TOKEN);
 var dict = [];
-var userStorage = [];
-
-// var list = [
+// var dict = [
 //   { type: 'delete', coin: 'btc', amount: 0 },
 //   { type: 'add', coin: 'eth', amount: 20053.0 },
 //   { type: 'add', coin: 'ltc', amount: 45652 }
 // ];
+var userStorage = [];
+
+// var list = [
+//   { coin: 'delete', amount: 0, price: 0, value: 2 },
+// ];
+
+
 
 window.onload = () => {
         loadTableData();
@@ -23,11 +28,14 @@ function loadTableData(){
 
     //getMockCoins();
     getCoins();
-    for (i = 0; i < localStorage.length; i++) {
-        let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
-        dataHtml += `<tr id="row${i}"><td><button id="hiddenButton${localStorage.key(i)}" style="display:none" onclick="remove(${i})">-</button></td>
-          <td id="${localStorage.key(i)}">${localStorage.key(i)}</td><td id="${localStorage.key(i)}Amount">${splitArray[0]}.</td>
-          <td id="${localStorage.key(i)}Amount2">${splitArray[1]}</td></tr>`
+    for (i = 0; i < userStorage.length; i++) {
+        //for double row perfect alignment of '.'
+        //let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
+        dataHtml += `<tr id="row${i}"><td><button id="hiddenButton${userStorage[i].coin}" style="display:none" onclick="remove(${i})">-</button></td>
+          <td id="${userStorage[i].coin}">${userStorage[i].coin}</td><td id="${userStorage[i].coin}Amount">${userStorage[i].amount}</td>
+          
+          
+          </tr>`
     }
     dataHtml += `<tr><td></td>
     <td id="coinOptions">
@@ -80,12 +88,15 @@ function getCoins(){
         localStorage.clear();
         objKeys = Object.keys(res.data.user.coins);
         objValues = Object.values(res.data.user.coins);
-        objCoinKeys = Object.keys(res.data.coins);
+        //objCoinKeys = Object.keys(res.data.coins);
+        objCoinValues = Object.values(res.data.coins);
         for(let i = 0; i < Object.keys(res.data.user.coins).length; i++) {
           //converts number to be number with 8 decimal places
-          let value = (objValues[i]).toFixed(8);
-          console.log(objCoinKeys);
-          let item = {'coin': String(objKeys[i]), 'amount': String(value), 'price': objCoinKeys[i].price, 'value': objCoinKeys[i].value};
+          let amountOfCoin = (objValues[i]).toFixed(8);
+          let priceOfCoin = (objCoinValues[i].price).toFixed(2);
+          let valueOfCoin = (objCoinValues[i].value).toFixed(8);
+          console.log(ObjCoinValues);
+          let item = {coin: String(objKeys[i]), amount: String(value), price: String(priceOfCoin), value: String(valueOfCoin)};
           console.log(item);
           userStorage.push(item);
           localStorage.setItem(String(objKeys[i]),String(value));
