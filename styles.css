@@ -5,26 +5,27 @@ table {
 table,
 th,
 td {
-  border: 0px solid black;
-  padding: 10px;
+  /* border: 10px solid black; */
+  padding: 20px;
 }
 
 th {
   background: #99ccff;
 }
 
-th,
-td {
+#accountHeader {
+  text-align: right;
+  color: red;
 }
 
-th {
-  text-align: center;
+tr {
+  padding: 50%;
 }
-td:nth-child(2) {
+td:nth-child(3) {
   text-align: right;
   padding-right: 2px;
 }
-td:nth-child(3) {
+td:nth-child(4) {
   padding-right: 20px;
   position: relative;
   left: -0.2em;
@@ -34,15 +35,15 @@ td:nth-child(3) {
 
 body {
   background: #fff;
-  padding: 0px;
-  margin: 0px;
+  padding: 20px;
+  margin: 20px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 input,
 button {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin-top: 49px;
+  margin-bottom: 20px;
 }
 
 .main-div input {
@@ -56,13 +57,26 @@ button {
   margin-bottom: 20px;
 }
 
-#HASH {
-  display: flex;
-  justify-content: space-between;
-}
-
 p {
   background-color: blue;
   color: white;
   margin-top: 49px;
+}
+
+h2 {
+  padding-left: 55px;
+}
+
+#container {
+  border-right: 1px solid red;
+  display: inline-block;
+  text-align: right;
+}
+#invisibleHeader {
+  background-color: white;
+}
+
+.EditButtons {
+  padding: 10px;
+  padding-left: 55px;
 }
