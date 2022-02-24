@@ -233,7 +233,7 @@ function sleep(ms) {
 
 async function demo() {
   console.log('Taking a break...');
-  await sleep(5000);
+  await sleep(10000);
   console.log('Two second later');
 }
 
