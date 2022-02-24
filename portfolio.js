@@ -15,13 +15,12 @@ function loadTableData(){
     const tableBody = document.getElementById('tableData')
     let dataHtml = '';
 
+    //getMockCoins();
     getCoins();
-
     for (i = 0; i < localStorage.length; i++) {
         let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
-        dataHtml += `<tr><td>${localStorage.key(i)}</td><td>${splitArray[0]}.</td><td>${splitArray[1]}</td><tr>`
+        dataHtml += `<tr><td><button id="hiddenButtons${i}" style="display:none" onclick="remove()">-</button></td><td>${localStorage.key(i)}</td><td>${splitArray[0]}.</td><td>${splitArray[1]}</td></tr>`
     }
-    console.log("it all worked")
     tableBody.innerHTML = dataHtml;
     localStorage.clear();
 }
@@ -36,8 +35,10 @@ function parseJwt (token) {
     return JSON.parse(jsonPayload);
 };
 
-
-
+function getMockCoins() {
+  localStorage.setItem('btc','1.00000000');
+  localStorage.setItem('eth','145.00000000');
+}
 
 function getCoins(){
   //Grabs username and passowrd from document to be used as parameters for API
@@ -184,6 +185,25 @@ function addUpdate() {
         key:   "eth",
         value: "3"
     });
+}
+
+function editFunction() {
+    var length = 2;
+    for(let i = 0; i < length;i++){
+      var string = "hiddenButtons" + String(i);
+      var hidden = document.getElementById(string);
+      hidden.style.display = "block";  // <-- Set it to block
+      hidden.style.position = "absolute";
+    }
+}
+
+function saveFunction() {
+  var length = 2;
+    for(let i = 0; i < length;i++){
+      var string = "hiddenButtons" + String(i);
+      var hidden = document.getElementById(string);
+      hidden.style.display = "none";  // <-- Set it to block
+    }
 }
 
 
