@@ -28,14 +28,15 @@ function loadTableData(){
     let dataHtml = '';
     console.log("2");
     
-    for (i = 0; i < userStorage.length; i++) {
+    for (let i = 0; i < userStorage.length; i++) {
         //for double row perfect alignment of '.'
         //let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
+        console.log("3");
         dataHtml += `<tr id="row${i}"><td><button id="hiddenButton${userStorage[i].coin}" style="display:none" onclick="remove(${i})">-</button></td>
           <td id="${userStorage[i].coin}">${userStorage[i].coin}</td><td id="${userStorage[i].coin}Amount">${userStorage[i].amount}</td>
           <td id="${userStorage[i].coin}Price">${userStorage[i].price}</td><td id="${userStorage[i].coin}Value">${userStorage[i].value}</td>
           </tr>`;
-          console.log("3");
+          
     }
     dataHtml += `<tr><td></td>
     <td id="coinOptions">
@@ -96,7 +97,6 @@ function getCoins(){
           let item = {coin: String(objKeys[i]), amount: String(amountOfCoin), price: String(priceOfCoin), value: String(valueOfCoin)};
           console.log(item);
           userStorage.push(item);
-          
         }
         console.log(userStorage);
         loadTableData();
