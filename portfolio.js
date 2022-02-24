@@ -159,7 +159,7 @@ function updateAccount(coin, amount) {
   const user = {
     "emailId": COGNITO_ID_TOKEN.email,
     "coinId": coin,
-    "amount": amount
+    "amount": parseInt(amount)
   }
   console.log(user);
   axios.post(BITCOOOONECT_API, user, {
@@ -168,7 +168,7 @@ function updateAccount(coin, amount) {
       }
   }).then((res) => {
     try {
-        
+        console.log(res);
     } catch (error) { 
         alert("API offline: UPDATE");
     }
