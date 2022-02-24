@@ -174,7 +174,7 @@ function saveFunction() {
   //     console.log(false);
   //   }
   // }
-  if(newCoinValue != "" && isNewCoin && newAmountValue != ""){
+  if(newCoinValue != "empty" && isNewCoin && newAmountValue != ""){
     
     console.log(newCoinValue);
     console.log(newAmountValue);
