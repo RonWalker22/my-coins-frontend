@@ -123,12 +123,12 @@ function getCoinPrices(){
           console.log(localStorage.key(i) + "=[" + localStorage.getItem(localStorage.key(i)) + "]");
         }
     } catch (error) { 
-      alert("API offline");
+      alert("API offline:COIN API");
     }
     
   })
 }
-
+//needs tweaking-J
 function createAccount() {
 
   let username = document.getElementById("username").value;
@@ -156,7 +156,7 @@ function createAccount() {
   })
   
 }
-
+//working on it-Juan
 function updateAccount(coin, amount) {
   
   let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio"
@@ -181,10 +181,8 @@ function updateAccount(coin, amount) {
     
   })
 }
-
+//working on it-J
 function updates() {
-
-    
     for(let i = 0; i < dict.length; i++) {
         console.log("before updateAccount");
         updateAccount(dict[i].key,dict[i].value);
@@ -259,8 +257,6 @@ function remove(index) {
   //remove in local storage
   objectToRemove = {type: 'delete', coin: localStorage.key(index), amount: 0};
   dict.push(objectToRemove);
-
-
 }
 
 function clearStorage() {
