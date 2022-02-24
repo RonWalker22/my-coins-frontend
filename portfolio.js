@@ -30,7 +30,7 @@ function loadTableData(){
     for (i = 0; i < userStorage.length; i++) {
         //for double row perfect alignment of '.'
         //let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
-        dataHtml += `<tr id="row${i}"><td><button id="hiddenButton${userStorage[i].coin}" style="display:none" onclick="remove(${i})">-</button></td>
+        dataHtml += `<tr id="row${i}"><td><button class"HiddenButton" id="hiddenButton${userStorage[i].coin}" style="display:none" onclick="remove(${i})">-</button></td>
           <td id="${userStorage[i].coin}">${userStorage[i].coin}</td><td id="${userStorage[i].coin}Amount">${userStorage[i].amount}</td>
           <td id="${userStorage[i].coin}Price">${userStorage[i].price}</td><td id="${userStorage[i].coin}Value">${userStorage[i].value}</td>
           </tr>`
