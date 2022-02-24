@@ -19,6 +19,7 @@ var userStorage = [];
 
 window.onload = () => {
         loadTableData();
+        saveFunction();
         //getCoinPrices();
     };
 
@@ -28,6 +29,7 @@ function loadTableData(){
 
     //getMockCoins();
     getCoins();
+    console.log("done with getCoins");
     for (i = 0; i < userStorage.length; i++) {
         //for double row perfect alignment of '.'
         //let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
