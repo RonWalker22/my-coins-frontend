@@ -28,8 +28,9 @@ function loadTableData(){
 
     //getMockCoins();
     getCoins();
-    setTimeout(wait(), 3000);
+    setTimeout(getMockCoins(), 3000);
     console.log("done with getCoins");
+    console.log(userStorage);
     for (i = 0; i < userStorage.length; i++) {
         //for double row perfect alignment of '.'
         //let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
@@ -99,8 +100,9 @@ function getCoins(){
           let item = {coin: String(objKeys[i]), amount: String(amountOfCoin), price: String(priceOfCoin), value: String(valueOfCoin)};
           console.log(item);
           userStorage.push(item);
-          console.log(userStorage);
+          
         }
+        console.log(userStorage);
 
     } catch (error) { 
       alert("API offline: GET");
