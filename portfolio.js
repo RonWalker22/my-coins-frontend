@@ -24,19 +24,15 @@ window.onload = () => {
 
 function loadTableData(){
     const tableBody = document.getElementById('tableData')
+    document.getElementById('tableData').innerHTML ="";
     let dataHtml = '';
-
-    //getMockCoins();
     
-    //setTimeout(getMockCoins(), 15000);
-    console.log(userStorage);
     for (i = 0; i < userStorage.length; i++) {
         //for double row perfect alignment of '.'
         //let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
         dataHtml += `<tr id="row${i}"><td><button id="hiddenButton${userStorage[i].coin}" style="display:none" onclick="remove(${i})">-</button></td>
           <td id="${userStorage[i].coin}">${userStorage[i].coin}</td><td id="${userStorage[i].coin}Amount">${userStorage[i].amount}</td>
-          
-
+          <td id="${userStorage[i].coin}Price">${userStorage[i].value}</td><td id="${userStorage[i].coin}Value">${userStorage[i].value}</td>
           </tr>`
     }
     dataHtml += `<tr><td></td>
@@ -110,35 +106,6 @@ function getCoins(){
   })
 }
 
-//needs tweaking-J
-function createAccount() {
-
-  let username = document.getElementById("username").value;
-  let usernameAttachment = "authToken="+document.getElementById("username").value;
-  let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio"
-
-  const userObj = {
-  };
-
-  axios.post(BITCOOOONECT_API, userObj).then((res) => {
-    console.log(res.data);
-    try {
-        let authToken = res.data.user.authToken;
-        var para=document.createElement("p");
-            var node=document.createTextNode(String(authToken));
-            para.appendChild(node);
-            para.style.color="red";
-            var element=document.getElementById("d2");
-            element.appendChild(para)
-      
-    } catch (error) { 
-      alert("API is disconnected");
-    }
-    
-  })
-  
-}
-
 function updateAccount(coin, amount) {
   
   let BITCOOOONECT_API = "https://t3d210uhn7.execute-api.us-east-2.amazonaws.com/test/portfolio?emailId="+String(COGNITO_ID_TOKEN.email)+"&coinId="+coin+"&amount="+amount;
@@ -156,8 +123,7 @@ function updateAccount(coin, amount) {
       }
   }).then((res) => {
     try {
-        console.log("displaying res:")
-        console.log(res);
+        getCoins();
     } catch (error) { 
         alert("API offline: UPDATE");
     }
@@ -226,7 +192,6 @@ function saveFunction() {
   
   //parse through html and fix your naming conventions
   //nuke and restart
-  document.getElementById('tableData').innerHTML ="";
   getCoins();
   //window.location.reload();
 
