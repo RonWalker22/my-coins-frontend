@@ -30,7 +30,7 @@ function loadTableData(){
     }
     dataHtml += `<tr><td></td>
     <td id="coinOptions">
-    <select id="listOfCoins" style="display:none">
+    <select id="lis tOfCoins" style="display:none">
         <option value="empty" selected="selected"></option>
         <option value="Bitcoin">Bitcoin</option>
         <option value="Ethereum">Ethereum</option>
@@ -206,9 +206,10 @@ function saveFunction() {
   //parse through html and fix your naming conventions
   //nuke and restart
   document.getElementById('tableData').innerHTML ="";
-  //loadTableData();
-  demo();
-  window.location.reload();
+  setTimeout(function(){
+    loadTableData();
+  }, 5000);
+  //window.location.reload();
 
 }
 
