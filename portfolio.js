@@ -127,7 +127,7 @@ function updateAccount(coin, amount) {
     "amount": parseInt(amount)
   }
   console.log(user);
-  axios.put(BITCOOOONECT_API2, {
+  axios.put(BITCOOOONECT_API2, {}, {
       headers: {
           'Authorization': COGNITO_AUTH_TOKEN,
       }
