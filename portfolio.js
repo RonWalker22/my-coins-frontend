@@ -31,6 +31,7 @@ function loadTableData(){
     for (i = 0; i < userStorage.length; i++) {
         //for double row perfect alignment of '.'
         //let splitArray = String(localStorage.getItem(localStorage.key(i))).split('.');
+        console.log(userStorage[i].coin);
         dataHtml += `<tr id="row${i}"><td><button id="hiddenButton${userStorage[i].coin}" style="display:none" onclick="remove(${i})">-</button></td>
           <td id="${userStorage[i].coin}">${userStorage[i].coin}</td><td id="${userStorage[i].coin}Amount">${userStorage[i].amount}</td>
           
@@ -84,21 +85,16 @@ function getCoins(){
   }).then((res) => {
     try {
       //DELETE LATER
-        console.log("resData: ");
-        console.log(res.data);
         userStorage = [];
         objKeys = Object.keys(res.data.user.coins);
         objValues = Object.values(res.data.user.coins);
         //objCoinKeys = Object.keys(res.data.coins);
-        console.log("resData1: ");
         objCoinValues = Object.values(res.data.coins);
-        console.log("resData2: ");
         for(let i = 0; i < Object.keys(res.data.user.coins).length; i++) {
           //converts number to be number with 8 decimal places
           let amountOfCoin = (objValues[i]).toFixed(8);
           let priceOfCoin = (objCoinValues[i].price).toFixed(2);
           let valueOfCoin = (objCoinValues[i].value).toFixed(8);
-          console.log(objCoinValues);
           let item = {coin: String(objKeys[i]), amount: String(amountOfCoin), price: String(priceOfCoin), value: String(valueOfCoin)};
           console.log(item);
           userStorage.push(item);
