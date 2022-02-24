@@ -167,8 +167,7 @@ function updateAccount(coin, amount) {
   axios.put(BITCOOOONECT_API2, {
       headers: {
           'Authorization': COGNITO_AUTH_TOKEN,
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+          'Access-Control-Allow-Origin': 'https://main.d2vxkgg60q4gyv.amplifyapp.com'
       }
   }).then((res) => {
     try {
